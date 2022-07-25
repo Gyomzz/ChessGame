@@ -1,0 +1,71 @@
+body {
+    display: block;
+    margin: auto;
+    width: 1000px;
+    margin-top: 20px;
+}
+
+.square {
+    width: 50px;
+    height: 50px;
+    display: inline-block;
+    margin: 0px;
+    animation: fadeIn 1s;
+}
+
+#boardOuter {
+    height: 450px;
+    width: 450px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+}
+
+#boardInner {
+    border: solid 1px black;
+    width: 400px;
+    height: 400px;
+    display: inline-flex;
+    flex-wrap: wrap;
+    margin: auto;
+    visibility: hidden;
+}
+
+#numberContainer {
+    width: 400px;
+    height: 50px;
+    margin-left: 24px;
+}
+
+#letterContainer {
+    width: 46px;
+    display: inline-block;
+    height: 400px;
+    margin-top: 2px;
+}
+
+.label {
+    width: 50px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    width: 400px;
+    height: 50px;
+}
+
+@keyframes fadeIn {
+    0% {
+        transform: rotateY(180deg);
+    } 100% {
+        transform: rotateY(0deg);
+    }
+}
+
+#setup-button {
+    margin-bottom: 20px;
+}
