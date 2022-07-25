@@ -1,3 +1,4 @@
+export const piecesOnBoards = new Array();
 export class Pieces {
     constructor(start, color) {
         this.color = color;
@@ -8,7 +9,6 @@ export class Pieces {
 
     to(target) {
         this.current = target;
-        this.domEl.style.gridArea = target;
     }
 
     static toXY = ([xLetter, y]) => {
@@ -21,7 +21,7 @@ export class Pieces {
     isValidMove(target) {
         const start = Pieces.toXY(this.current);
         const end = Pieces.toXY(target);
-        const possiblePiece = pieceOnTarget([end.x , end.y]);
+        const possiblePiece = pieceOnTarget(end.x , end.y);
         action(start, end, possiblePiece);
     }
 
@@ -48,7 +48,7 @@ export class King extends Pieces {
             super.to(target);
         }
         else {
-            console.log("Cant do that !");
+            alert("Cant do that !");
         }
     }
 
@@ -70,7 +70,7 @@ export class Queen extends Pieces {
             super.to(target);
         }
         else {
-            console.log("Cant do that !");
+            alert("Cant do that !");
         }
     }
 
@@ -90,7 +90,7 @@ export class Rook extends Pieces {
             super.to(target);
         }
         else {
-            console.log("Cant do that !");
+            alert("Cant do that !");
         }
     }
     
@@ -110,7 +110,7 @@ export class Bishop extends Pieces {
             super.to(target);
         }
         else {
-            console.log("Cant do that !");
+            alert("Cant do that !");
         }
     }
 
@@ -130,7 +130,7 @@ export class Knigth extends Pieces {
             super.to(target);
         }
         else {
-            console.log("Cant do that !");
+            alert("Cant do that !");
         }
     }
 
@@ -154,16 +154,36 @@ export class Pawn extends Pieces {
             this.firstMovement = true;
         }
         else {
-            console.log("Cant do that !");
+            alert("Cant do that !");
         }
     }
 
     canMove(start, end) {
         if(this.firstMovement) {
-            return ( Math.abs(start.y - end.y) == 1 || Math.abs(start.y - end.y) == 2 )
+            return ( 
+                (Math.abs(start.y - end.y) === 1 && Math.abs(start.x - end.x) === 0) 
+                || 
+                (Math.abs(start.y - end.y)  === 2 && Math.abs(start.x - end.x) === 0)
+            )
         } else {
-            return ( Math.abs(start.y - end.y) == 1 )
+            return Math.abs(start.y - end.y) == 1 && Math.abs(start.x - end.x) == 0
         }
+    }
+
+    action(start, end, piece) {
+        if(canMove(start, end) == true && piece != undefined && this.canAttack(start, end) == true) {
+            if(canTakePiece(piece) == true) {
+                piece.onBoard = false;
+                return true
+            }
+        } else {
+            return canMove(start, end)
+        }
+    }
+
+    canAttack(start, end) {
+        return Math.abs(start.y - end.y) == 1 && Math.abs(start.x - end.x) == 1
+        && canTakePiece(this, pieceOnTarget(end.x, end.y))
     }
 }
 
@@ -171,8 +191,8 @@ export const canTakePiece = (attackPiece, pieceToAttack) => {
     return attackPiece.color != pieceToAttack.color
 }
 
-export const pieceOnTarget = ([xLetter, y]) => {
-    return piecesOnBoard.find( piece => piece.x == xLetter && piece.y == y)
+export const pieceOnTarget = (xLetter, y) => {
+    return piecesOnBoards.find( piece => piece.current.x == xLetter && piece.current.y == y)
 }
 
 export const canLateralMove = (start, end) => {
@@ -185,4 +205,3 @@ export const canDiagonalMove = (start, end) => {
     return (Math.abs(start.x - end.x) === Math.abs(start.y - end.y))
 }
 
-export const piecesOnBoard = new Array();
