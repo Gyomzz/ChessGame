@@ -3,7 +3,7 @@ export class Pieces {
         this.color = color;
         this.current = start;
         this.onBoard = true;
-        this.domEl = document.createRange().createContextualFragment(`<div class="chess-piece"></div>`);
+        this.img = document.createElement("img");
     }
 
     to(target) {
@@ -40,6 +40,7 @@ export class Pieces {
 export class King extends Pieces {
     constructor(start, color) {
         super(start, color);
+        this.img.src = `./assets/Pieces/${color}/King.png`;
     }
 
     to(target) {
@@ -61,6 +62,7 @@ export class King extends Pieces {
 export class Queen extends Pieces {
     constructor(start, color) {
         super(start, color);
+        this.img.src = `./assets/Pieces/${color}/Queen.png`;
     }
 
     to(target) {
@@ -80,6 +82,7 @@ export class Queen extends Pieces {
 export class Rook extends Pieces {
     constructor(start, color) {
         super(start, color);
+        this.img.src = `./assets/Pieces/${color}/Rook.png`;
     }
 
     to(target) {
@@ -99,6 +102,7 @@ export class Rook extends Pieces {
 export class Bishop extends Pieces {
     constructor(start, color) {
         super(start, color);
+        this.img.src = `./assets/Pieces/${color}/Bishop.png`;
     }
 
     to(target) {
@@ -118,6 +122,7 @@ export class Bishop extends Pieces {
 export class Knigth extends Pieces {
     constructor(start, color) {
         super(start, color);
+        this.img.src = `./assets/Pieces/${color}/Knigth.png`;
     }
 
     to(target) {
@@ -140,6 +145,7 @@ export class Pawn extends Pieces {
     constructor(start, color) {
         super(start, color);
         this.firstMovement = false;
+        this.img.src = `./assets/Pieces/${color}/Pawn.png`;
     }
 
     to(target) {
