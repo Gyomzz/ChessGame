@@ -4,6 +4,7 @@ const board = document.getElementById('boardInner');
 const setupButton = document.getElementById('setup-button');
 const letters = 'ABCDEFGH';
 let side = false;
+let pieceCount = 0;
 
 setupButton.addEventListener('click', event => {
     if(setupButton.innerText == "Start Game") {
@@ -77,6 +78,7 @@ const setupPieces = () => {
         setupBotPieces("White");
         side = !side
     }
+    console.log(Pieces.piecesOnBoards)
 }
 
 const setupTopPieces = (color) => {
@@ -98,7 +100,8 @@ const setupBotPieces = (color) => {
 const setupBotPawn = (color) => {
     for(let i = 0; i < 8; i++) {
         let square = document.getElementById(`${i + 1} 7`);
-        let pawn = new Pieces.Pawn({x: i + 1, y: 7}, color);
+        pieceCount++;
+        let pawn = new Pieces.Pawn({x: i + 1, y: 7}, color, pieceCount);
         let img = pawn.img;
         img.className = "pieces";
         square.appendChild(img);
@@ -109,7 +112,8 @@ const setupBotPawn = (color) => {
 const setupTopPawn = (color) => {
     for(let i = 0; i < 8; i++) {
         let square = document.getElementById(`${i + 1} 2`);
-        let pawn = new Pieces.Pawn({x: i + 1, y: 2}, color);
+        pieceCount++;
+        let pawn = new Pieces.Pawn({x: i + 1, y: 2}, color, pieceCount);
         let img = pawn.img;
         img.className = "pieces";
         square.appendChild(img);
@@ -118,86 +122,112 @@ const setupTopPawn = (color) => {
 }
 
 const setupTopRooks = (color) => {
-    let leftRook = new Pieces.Rook({x: 1, y: 1}, color)
-    let rightRook = new Pieces.Rook({x: 8, y: 1}, color)
-    let img = rightRook.img
-    img.className = "pieces";
+    pieceCount++;
+    let leftRook = new Pieces.Rook({x: 1, y: 1}, color, pieceCount)
+    pieceCount++;
+    let rightRook = new Pieces.Rook({x: 8, y: 1}, color, pieceCount)
+    let leftImg = leftRook.img
+    let rightImg = rightRook.img
+    leftImg.className = "pieces";
+    rightImg.className = "pieces";
     let leftSquare = document.getElementById('8 1')
     let rightSquare = document.getElementById('1 1')
-    leftSquare.appendChild(img)
-    rightSquare.appendChild(img.cloneNode())
+    leftSquare.appendChild(leftImg)
+    rightSquare.appendChild(rightImg)
     Pieces.piecesOnBoards.push(leftRook)
     Pieces.piecesOnBoards.push(rightRook)
 }
 
 const setupBotRooks = (color) => {
-    let rightRook = new Pieces.Rook({x: 1, y: 8}, color)
-    let leftRook = new Pieces.Rook({x: 8, y: 8}, color)
-    let img = rightRook.img
-    img.className = "pieces";
+    pieceCount++;
+    let leftRook = new Pieces.Rook({x: 1, y: 1}, color, pieceCount)
+    pieceCount++;
+    let rightRook = new Pieces.Rook({x: 8, y: 1}, color, pieceCount)
+    let leftImg = leftRook.img
+    let rightImg = rightRook.img
+    leftImg.className = "pieces";
+    rightImg.className = "pieces";
     let leftSquare = document.getElementById('8 8')
     let rightSquare = document.getElementById('1 8')
-    leftSquare.appendChild(img)
-    rightSquare.appendChild(img.cloneNode())
+    leftSquare.appendChild(leftImg)
+    rightSquare.appendChild(rightImg)
     Pieces.piecesOnBoards.push(leftRook)
     Pieces.piecesOnBoards.push(rightRook)
 }
 
 const setupTopBishops = (color) => {
-    let leftBishop = new Pieces.Bishop({x: 3, y: 1}, color)
-    let rightBishop = new Pieces.Bishop({x: 6, y: 1}, color)
-    let img = rightBishop.img
-    img.className = "pieces";
+    pieceCount++;
+    let leftBishop = new Pieces.Bishop({x: 3, y: 1}, color, pieceCount)
+    pieceCount++;
+    let rightBishop = new Pieces.Bishop({x: 6, y: 1}, color, pieceCount)
+    let leftImg = leftBishop.img
+    let rightImg = rightBishop.img
+    leftImg.className = "pieces";
+    rightImg.className = "pieces";
     let leftSquare = document.getElementById('6 1')
     let rightSquare = document.getElementById('3 1')
-    leftSquare.appendChild(img)
-    rightSquare.appendChild(img.cloneNode())
+    leftSquare.appendChild(leftImg)
+    rightSquare.appendChild(rightImg)
     Pieces.piecesOnBoards.push(leftBishop)
     Pieces.piecesOnBoards.push(rightBishop)
 }
 
 const setupBotBishops = (color) => {
-    let leftBishop = new Pieces.Bishop({x: 3, y: 8}, color)
-    let rightBishop = new Pieces.Bishop({x: 6, y: 8}, color)
-    let img = rightBishop.img
-    img.className = "pieces";
+    pieceCount++;
+    let leftBishop = new Pieces.Bishop({x: 3, y: 8}, color, pieceCount)
+    pieceCount++;
+    let rightBishop = new Pieces.Bishop({x: 6, y: 8}, color, pieceCount)
+    let leftImg = leftBishop.img
+    let rightImg = rightBishop.img
+    leftImg.className = "pieces";
+    rightImg.className = "pieces";
     let leftSquare = document.getElementById('6 8')
     let rightSquare = document.getElementById('3 8')
-    leftSquare.appendChild(img)
-    rightSquare.appendChild(img.cloneNode())
+    leftSquare.appendChild(leftImg)
+    rightSquare.appendChild(rightImg)
     Pieces.piecesOnBoards.push(leftBishop)
     Pieces.piecesOnBoards.push(rightBishop)
 }
 
 const setupTopKnigths = (color) => {
-    let leftKnight = new Pieces.Knigth({x: 2, y: 1}, color)
-    let rightKnight = new Pieces.Knigth({x: 7, y: 1}, color)
-    let img = rightKnight.img
-    img.className = "pieces";
+    pieceCount++;
+    let leftKnight = new Pieces.Knigth({x: 2, y: 1}, color, pieceCount)
+    pieceCount++;
+    let rightKnight = new Pieces.Knigth({x: 7, y: 1}, color, pieceCount)
+    let leftImg = leftKnight.img
+    let rightImg = rightKnight.img
+    leftImg.className = "pieces";
+    rightImg.className = "pieces";
     let leftSquare = document.getElementById('7 1')
     let rightSquare = document.getElementById('2 1')
-    leftSquare.appendChild(img)
-    rightSquare.appendChild(img.cloneNode())
+    leftSquare.appendChild(leftImg)
+    rightSquare.appendChild(rightImg)
     Pieces.piecesOnBoards.push(leftKnight)
     Pieces.piecesOnBoards.push(rightKnight)
 }
 
 const setupBotKnigths = (color) => {
-    let leftKnight = new Pieces.Knigth({x: 2, y: 8}, color)
-    let rightKnight = new Pieces.Knigth({x: 7, y: 8}, color)
-    let img = rightKnight.img
-    img.className = "pieces";
+    pieceCount++;
+    let leftKnight = new Pieces.Knigth({x: 2, y: 1}, color, pieceCount)
+    pieceCount++;
+    let rightKnight = new Pieces.Knigth({x: 7, y: 1}, color, pieceCount)
+    let leftImg = leftKnight.img
+    let rightImg = rightKnight.img
+    leftImg.className = "pieces";
+    rightImg.className = "pieces";
     let leftSquare = document.getElementById('7 8')
     let rightSquare = document.getElementById('2 8')
-    leftSquare.appendChild(img)
-    rightSquare.appendChild(img.cloneNode())
+    leftSquare.appendChild(leftImg)
+    rightSquare.appendChild(rightImg)
     Pieces.piecesOnBoards.push(leftKnight)
     Pieces.piecesOnBoards.push(rightKnight)
 }
 
 const setupTopQueenKing = (color) => {
-    let king = new Pieces.King({x: 5, y: 1}, color)
-    let queen = new Pieces.Queen({x: 4, y: 1}, color)
+    pieceCount++;
+    let king = new Pieces.King({x: 5, y: 1}, color, pieceCount)
+    pieceCount++;
+    let queen = new Pieces.Queen({x: 4, y: 1}, color, pieceCount)
     let qImg = queen.img
     let kImg = king.img
     let kingSquare = document.getElementById('5 1')
@@ -209,8 +239,10 @@ const setupTopQueenKing = (color) => {
 }
 
 const setupBotQueenKing = (color) => {
-    let king = new Pieces.King({x: 5, y: 8}, color)
-    let queen = new Pieces.Queen({x: 4, y: 8}, color)
+    pieceCount++;
+    let king = new Pieces.King({x: 5, y: 1}, color, pieceCount)
+    pieceCount++;
+    let queen = new Pieces.Queen({x: 4, y: 1}, color, pieceCount)
     let qImg = queen.img
     let kImg = king.img
     let kingSquare = document.getElementById('5 8')

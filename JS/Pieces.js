@@ -1,6 +1,7 @@
 export const piecesOnBoards = new Array();
 export class Pieces {
-    constructor(start, color) {
+    constructor(start, color, id) {
+        this.id = id;
         this.color = color;
         this.current = start;
         this.onBoard = true;
@@ -38,9 +39,10 @@ export class Pieces {
 }
 
 export class King extends Pieces {
-    constructor(start, color) {
-        super(start, color);
+    constructor(start, color, id) {
+        super(start, color, id);
         this.img.src = `./assets/Pieces/${color}/King.png`;
+        this.img.id = `piece-${id}`;
     }
 
     to(target) {
@@ -60,9 +62,10 @@ export class King extends Pieces {
 }
 
 export class Queen extends Pieces {
-    constructor(start, color) {
-        super(start, color);
+    constructor(start, color, id) {
+        super(start, color, id);
         this.img.src = `./assets/Pieces/${color}/Queen.png`;
+        this.img.id = `piece-${id}`;
     }
 
     to(target) {
@@ -80,9 +83,10 @@ export class Queen extends Pieces {
 }
 
 export class Rook extends Pieces {
-    constructor(start, color) {
-        super(start, color);
+    constructor(start, color, id) {
+        super(start, color, id);
         this.img.src = `./assets/Pieces/${color}/Rook.png`;
+        this.img.id = `piece-${id}`;
     }
 
     to(target) {
@@ -100,9 +104,10 @@ export class Rook extends Pieces {
 }
 
 export class Bishop extends Pieces {
-    constructor(start, color) {
-        super(start, color);
+    constructor(start, color, id) {
+        super(start, color, id);
         this.img.src = `./assets/Pieces/${color}/Bishop.png`;
+        this.img.id = `piece-${id}`;
     }
 
     to(target) {
@@ -120,9 +125,10 @@ export class Bishop extends Pieces {
 }
 
 export class Knigth extends Pieces {
-    constructor(start, color) {
-        super(start, color);
+    constructor(start, color, id) {
+        super(start, color, id);
         this.img.src = `./assets/Pieces/${color}/Knigth.png`;
+        this.img.id = `piece-${id}`;
     }
 
     to(target) {
@@ -142,10 +148,11 @@ export class Knigth extends Pieces {
 }
 
 export class Pawn extends Pieces {
-    constructor(start, color) {
-        super(start, color);
+    constructor(start, color, id) {
+        super(start, color, id);
         this.firstMovement = false;
         this.img.src = `./assets/Pieces/${color}/Pawn.png`;
+        this.img.id = `piece-${id}`;
     }
 
     to(target) {
